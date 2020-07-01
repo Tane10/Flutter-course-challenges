@@ -1,6 +1,5 @@
 # flutter_course_challenges
-
-A new Flutter project.
+This repo contains the differenet flutter challenges i have done for the app brewery flutter bootcamp
 
 ## Getting Started
 
