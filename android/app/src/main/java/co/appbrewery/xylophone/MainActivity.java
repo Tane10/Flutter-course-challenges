@@ -1,4 +1,4 @@
-package co.appbrewery.magic8ball;
+package co.appbrewery.xylophone;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

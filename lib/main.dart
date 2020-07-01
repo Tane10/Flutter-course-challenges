@@ -1,44 +1,42 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
-void main() => runApp(MaterialApp(
-      home: BallPage(),
-    ));
+void main() => runApp(XylophoneApp());
 
-class BallPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Ask Me anything"),
-        backgroundColor: Colors.blue.shade900,
-      ),
-      backgroundColor: Colors.blue,
-      body: Ball(),
-    );
+class XylophoneApp extends StatelessWidget {
+  void playSound(int note) {
+    final player = AudioCache();
+    player.play('note$note.wav');
   }
-}
 
-class Ball extends StatefulWidget {
-  @override
-  _BallState createState() => _BallState();
-}
+  Expanded buildKey({Color color, int soundNumber}) => Expanded(
+        child: FlatButton(
+          color: color,
+          onPressed: () {
+            playSound(soundNumber);
+          },
+        ),
+      );
 
-class _BallState extends State<Ball> {
-  int ballNumber = 1;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: FlatButton(
-          child: Image.asset('images/ball$ballNumber.png'),
-          onPressed: () {
-            setState(
-              () {
-                ballNumber = Random().nextInt(5) + 1;
-              },
-            );
-          },
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              buildKey(color: Colors.red, soundNumber: 1),
+              buildKey(color: Colors.amber, soundNumber: 2),
+              buildKey(color: Colors.blue, soundNumber: 3),
+              buildKey(color: Colors.yellow, soundNumber: 4),
+              buildKey(color: Colors.pink, soundNumber: 5),
+              buildKey(color: Colors.green, soundNumber: 6),
+              buildKey(color: Colors.indigo, soundNumber: 7)
+            ],
+          ),
         ),
       ),
     );
